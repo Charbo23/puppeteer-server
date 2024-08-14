@@ -35,6 +35,7 @@
     "koa": "^2.13.4",
     "koa-bodyparser": "4.4.0",
     "koa-router": "^12.0.0",
+    "nanoid": "^5.0.7",
     "pdf-lib": "^1.17.1"
   },
   "peerDependencies": {
