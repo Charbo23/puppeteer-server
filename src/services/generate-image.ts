@@ -10,7 +10,7 @@ curl --location --request GET \
  */
 
 export default class GenerateImageService {
-    generate = async (ctx: Context): Promise<unknown> => {
+    generate = async (ctx: Context): Promise<any> => {
         if (!ctx.query.url) {
             ctx.status = 404;
             return {
@@ -56,12 +56,19 @@ export default class GenerateImageService {
         if (pageLoadState == "success") {
             // 页面加载成功
             const bodyHandle = await page.$("body"); //只截取body
+            const type = "jpeg";
             const img = await bodyHandle.screenshot({
                 // fullPage: true,
-                type: "png",
+                type,
             });
             await page.close();
-            return img;
+            return {
+                code: 0,
+                data: {
+                    img,
+                    type,
+                },
+            };
         } else {
             // 页面加载失败
             await page.close();
